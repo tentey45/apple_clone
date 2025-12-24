@@ -1,761 +1,168 @@
-import { useState } from "react";
-import "./navbar.css";
-import Image from "../assets/home-img-logo/apple-logo.png";
+import React, { useState, useRef, useEffect } from "react";
 
-const MAIN_ITEMS = [
-  "Store",
-  "Mac",
-  "iPad",
-  "iPhone",
-  "Watch",
-  "Vision",
-  "AirPods",
-  "TV & Home",
-  "Entertainment",
-  "Accessories",
-  "Support",
-];
+import "./Navbar.css";
+import  AppleLogo from "../assests/Home_logo_img/applelogo.png";
+import  SearchLogo from "../assests/Home_logo_img/search.png";
+import  BagLogo from "../assests/Home_logo_img/bag.svg";
 
-const STORE_MEGA_COLUMNS = [
-  {
-    title: "Shop",
-    type: "primary",
-    links: [
-      "Shop Gifts",
-      "Mac",
-      "iPad",
-      "iPhone",
-      "Apple Watch",
-      "Apple Vision Pro",
-      "AirPods",
-      "Accessories",
+
+/* 11 menus – each menu has 3 columns */
+const NAV_DATA = {
+    Store: [
+        ["Shop the Store", "Mac", "iPad", "iPhone", "Watch"],
+        ["Quick Links", "Find a Store", "Order Status", "Financing"],
+        ["Special Stores", "Education", "Business", "Government"],
     ],
-  },
-  {
-    title: "Quick Links",
-    type: "secondary",
-    links: [
-      "Find a Store",
-      "Order Status",
-      "Apple Trade In",
-      "Financing",
-      "Personal Setup",
+    Mac: [
+        ["Explore Mac", "MacBook Air", "MacBook Pro", "iMac"],
+        ["Shop Mac", "Compare Mac", "Accessories"],
+        ["More from Mac", "macOS", "Continuity", "iCloud"],
     ],
-  },
-  {
-    title: "Shop Special Stores",
-    type: "secondary",
-    links: [
-      "Certified Refurbished",
-      "Education",
-      "Business",
-      "Veterans and Military",
-      "Government",
+    iPad: [
+        ["Explore iPad", "iPad Pro", "iPad Air", "iPad mini"],
+        ["Shop iPad", "Compare iPad", "Accessories"],
+        ["More from iPad", "iPadOS", "Apple Pencil"],
     ],
-  },
-];
-
-const MAC_MEGA_COLUMNS = [
-  // Added: Define Mac menu data
-  {
-    title: "Explore Mac",
-    type: "primary",
-    links: [
-      "MacBook Air",
-      "MacBook Pro",
-      "iMac",
-      "Mac mini",
-      "Mac Studio",
-      "Mac Pro",
-      "Displays",
-      "Compare Mac",
+    iPhone: [
+        ["Explore iPhone", "iPhone 15", "iPhone 14", "iPhone SE"],
+        ["Shop iPhone", "Compare iPhone", "Accessories"],
+        ["More from iPhone", "iOS", "Privacy"],
     ],
-  },
-  {
-    title: "Shop Mac",
-    type: "secondary",
-    links: [
-      "Shop Mac",
-      "Mac Accessories",
-      "Apple Trade In",
-      "Financing",
-      "Personal Setup",
+    Watch: [
+        ["Explore Watch", "Series 9", "Ultra 2", "SE"],
+        ["Shop Watch", "Bands", "Accessories"],
+        ["More from Watch", "watchOS", "Fitness+"],
     ],
-  },
-
-  {
-    title: "More from Mac",
-    type: "secondary",
-    links: [
-      "Mac Support",
-      "AppleCare+ for Mac",
-      "macOS Sonoma",
-      "Apps by Apple",
-      "Continuity",
-      "iCloud+",
-      "Mac for Business",
-      "Education",
+    Vision: [
+        ["Explore Vision", "Vision Pro"],
+        ["Shop Vision", "Accessories"],
+        ["More from Vision", "visionOS"],
     ],
-  },
-];
-
-const iPad_MEGA_COLUMNS = [
-  // Added: Define Mac menu data
-  {
-    title: "Explore iPad",
-    type: "primary",
-    links: [
-      "Explore All iPad",
-      "iPad Pro",
-      "iPad Aire",
-      "iPad",
-      "iPad mini",
-      "Apple Pencil",
-      "Keyboards"
-    ]
-  },
-
- 
-
-  {
-    title: "Shop iPad",
-    type: "secondary",
-    links: [
-      "Shop iPad",
-      "iPad Accessories",
-      "Apple Trade In",
-      "Financing",
-      "Personal Setup",
+    AirPods: [
+        ["Explore AirPods", "AirPods Pro", "AirPods Max"],
+        ["Shop AirPods", "Accessories"],
+        ["More from AirPods", "Spatial Audio"],
     ],
-  },
-
-  {
-    title: "More from iPad",
-    type: "secondary",
-    links: [
-      "iPad Support",
-      "AppleCare",
-      "iPadOS 26",
-      "Apple Intelligence",
-      "Apped by Apple",
-      "iCloud+",
-      "Education",
+    "TV & Home": [
+        ["Explore TV & Home", "Apple TV 4K", "HomePod"],
+        ["Shop TV & Home", "Accessories"],
+        ["More from TV & Home", "HomeKit"],
     ],
-  },
-];
-
-const iPhone_MEGA_COLUMNS = [
-  // Added: Define Mac menu data
-  {
-    title: "Explore iPhone",
-    type: "primary",
-    links: [
-      "Explore All iPhone",
-      "iPhone 17 Pro",
-      "iPhone Air",
-      "iPhone 17",
-      "iPhone 16",
-      "iPhone 16e",
-    ]
-  },
-
- 
-
-  {
-    title: "Shop iPhone",
-    type: "secondary",
-    links: [
-      "Shop iPhone",
-      "iPhone Accessories",
-      "Apple Trade In",
-      "Financing",
-      "Personal Setup",
+    Entertainment: [
+        ["Explore Entertainment", "Apple TV+", "Apple Music"],
+        ["Support", "Apple Arcade"],
+        ["More", "Apple Podcasts", "Books"],
     ],
-  },
-
-  {
-    title: "More from iPhone",
-    type: "secondary",
-    links: [
-      "iPhone Support",
-      "Apple Care",
-      "iOS 26",
-      "Apple Intelligence",
-      "Apped by Apple",
-      "iPhone Privacy",
-      "Better with Mac",
-      "iCloud+",
-      "Wallet, Pay, Card",
-      "Siri",
+    Accessories: [
+        ["Shop Accessories", "Mac", "iPhone", "iPad"],
+        ["Browse", "Audio", "Cases"],
+        ["More", "Charging", "Adapters"],
     ],
-  },
-];
-
-const Watch_MEGA_COLUMNS = [
-  // Added: Define Mac menu data
-  {
-    title: "Explore Watch",
-    type: "primary",
-    links: [
-      "Explore All Apple Watch",
-      "Apple Watch Series 11",
-      "Apple Watch SE 3",
-      "Apple Watch Ultra 3",
-      "Apple Watch nike ",
-      "Apple Watch Hermes",
-    ]
-  },
-
- 
-
-  {
-    title: "Shop Watch",
-    type: "secondary",
-    links: [
-      "Shop Apple Watch",
-      "Shop Apple Bands",
-      "Apple Watch Accessories",
-      "Apple Trade In",
-      "Financing",
-      "Personal Setup",
+    Support: [
+        ["Explore Support", "iPhone", "Mac", "iPad"],
+        ["Help", "Repairs", "Account"],
+        ["Resources", "Manuals", "Forums"],
     ],
-  },
+};
 
-  {
-    title: "More from Watch",
-    type: "secondary",
-    links: [
-      "Watch Support",
-      "AppleCare",
-      "watchOS 26",
-      "Apple Watch For Your kids",
-      "Apped by Apple",
-      "Apple Fitness+",
-    ],
-  },
-];
+export default function Navbar() {
+    const [activeMenu, setActiveMenu] = useState(null);
+    const [mobileOpen, setMobileOpen] = useState(false);
+    const timeoutRef = useRef(null);
 
-const Vision_MEGA_COLUMNS = [
-  // Added: Define Mac menu data
-  {
-    title: "Explore Watch",
-    type: "primary",
-    links: [
-      "Explore Apple Vision Pro",
-    ]
-  },
+    const openMenu = (menu) => {
+        clearTimeout(timeoutRef.current);
+        setActiveMenu(menu);
+        setMobileOpen(false);
+    };
 
- 
+    const closeMenu = () => {
+        timeoutRef.current = setTimeout(() => {
+            setActiveMenu(null);
+        }, 200);
+    };
 
-  {
-    title: "Shop Watch",
-    type: "secondary",
-    links: [
-      "Shop Apple Vision Pro",
-      "Apple Vision Pro Accessories",
-      "Book a Demo",
-      "Financing",
-      "Personal Setup",
-    ],
-  },
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 768) {
+                setMobileOpen(false);
+            }
+        };
 
-  {
-    title: "More from Vision",
-    type: "secondary",
-    links: [
-      "Apple Vision Pro Support",
-      "AppleCare",
-      "watchOS 26",
-      "Apple Watch For Your kids",
-      "Apped by Apple",
-      "Apple Fitness+",
-    ],
-  },
-];
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
 
-const AirPods_MEGA_COLUMNS = [
-  // Added: Define Mac menu data
-  {
-    title: "Explore Watch",
-    type: "primary",
-    links: [
-      "Explore Apple Vision Pro",
-    ]
-  },
+    return (
+        <>
 
- 
+            {/* Blur overlay */}
+            <div className={`blur-overlay ${activeMenu || mobileOpen ? 'show' : ''}`} />
 
-  {
-    title: "Shop Watch",
-    type: "secondary",
-    links: [
-      "Shop Apple Vision Pro",
-      "Apple Vision Pro Accessories",
-      "Book a Demo",
-      "Financing",
-      "Personal Setup",
-    ],
-  },
+            <nav className={`nav ${activeMenu ? 'no-border' : ''}`}>
+                <div className="nav-inner">
+                    <img src={AppleLogo} alt="Apple" className="apple-logo"/>
 
-  {
-    title: "More from Vision",
-    type: "secondary",
-    links: [
-      "Apple Vision Pro Support",
-      "AppleCare",
-      "watchOS 26",
-      "Apple Watch For Your kids",
-      "Apped by Apple",
-      "Apple Fitness+",
-    ],
-  },
-];
+                    <ul className="nav-menu">
+                        {Object.keys(NAV_DATA).map((item) => (
+                            <li
+                                key={item}
+                                onMouseEnter={() => openMenu(item)}
+                                onMouseLeave={closeMenu}
+                            >
+                                {item}
+                            </li>
+                        ))}
+                    </ul>
 
-const TV_MEGA_COLUMNS = [
-  // Added: Define Mac menu data
-  {
-    title: "Explore Watch",
-    type: "primary",
-    links: [
-      "Explore Apple Vision Pro",
-    ]
-  },
+                    <div className="nav-right">
+                        <img src={SearchLogo} alt="Search" className="icon"/>
+                        <img src={BagLogo} alt="Bag" className="icon"/>
+                        <button
+                            className="mobile-toggle"
+                            onClick={() => setMobileOpen(!mobileOpen)}
+                        >
+                            {mobileOpen ? <img src={AppleLogo} alt="Apple" className="apple-logo"/> : <img src={AppleLogo} alt="Apple" className="apple-logo"/>}
+                        </button>
+                    </div>
+                </div>
 
- 
-
-  {
-    title: "Shop Watch",
-    type: "secondary",
-    links: [
-      "Shop Apple Vision Pro",
-      "Apple Vision Pro Accessories",
-      "Book a Demo",
-      "Financing",
-      "Personal Setup",
-    ],
-  },
-
-  {
-    title: "More from Vision",
-    type: "secondary",
-    links: [
-      "Apple Vision Pro Support",
-      "AppleCare",
-      "watchOS 26",
-      "Apple Watch For Your kids",
-      "Apped by Apple",
-      "Apple Fitness+",
-    ],
-  },
-];
-
-const Entertainment_MEGA_COLUMNS = [
-  // Added: Define Mac menu data
-  {
-    title: "Explore Watch",
-    type: "primary",
-    links: [
-      "Explore Apple Vision Pro",
-    ]
-  },
-
- 
-
-  {
-    title: "Shop Watch",
-    type: "secondary",
-    links: [
-      "Shop Apple Vision Pro",
-      "Apple Vision Pro Accessories",
-      "Book a Demo",
-      "Financing",
-      "Personal Setup",
-    ],
-  },
-
-  {
-    title: "More from Vision",
-    type: "secondary",
-    links: [
-      "Apple Vision Pro Support",
-      "AppleCare",
-      "watchOS 26",
-      "Apple Watch For Your kids",
-      "Apped by Apple",
-      "Apple Fitness+",
-    ],
-  },
-];
-
-
-const Accessories_MEGA_COLUMNS = [
-  // Added: Define Mac menu data
-  {
-    title: "Explore Watch",
-    type: "primary",
-    links: [
-      "Explore Apple Vision Pro",
-    ]
-  },
-
- 
-
-  {
-    title: "Shop Watch",
-    type: "secondary",
-    links: [
-      "Shop Apple Vision Pro",
-      "Apple Vision Pro Accessories",
-      "Book a Demo",
-      "Financing",
-      "Personal Setup",
-    ],
-  },
-
-  {
-    title: "More from Vision",
-    type: "secondary",
-    links: [
-      "Apple Vision Pro Support",
-      "AppleCare",
-      "watchOS 26",
-      "Apple Watch For Your kids",
-      "Apped by Apple",
-      "Apple Fitness+",
-    ],
-  },
-];
-
-
-const Support_MEGA_COLUMNS = [
-  // Added: Define Mac menu data
-  {
-    title: "Explore Watch",
-    type: "primary",
-    links: [
-      "Explore Apple Vision Pro",
-    ]
-  },
-
- 
-
-  {
-    title: "Shop Watch",
-    type: "secondary",
-    links: [
-      "Shop Apple Vision Pro",
-      "Apple Vision Pro Accessories",
-      "Book a Demo",
-      "Financing",
-      "Personal Setup",
-    ],
-  },
-
-  {
-    title: "More from Vision",
-    type: "secondary",
-    links: [
-      "Apple Vision Pro Support",
-      "AppleCare",
-      "watchOS 26",
-      "Apple Watch For Your kids",
-      "Apped by Apple",
-      "Apple Fitness+",
-    ],
-  },
-];
-
-
-
-
-
-function Navbar() {
-  const [openMenu, setOpenMenu] = useState(null);
-
-  const handleItemEnter = (item) => {
-    setOpenMenu(item);
-  };
-
-  const handleMenuLeave = () => {
-    // No additional code needed here
-    setOpenMenu(null);
-  };
-
-  return (
-    <>
-      <div
-        className={`mega-menu-overlay ${openMenu ? "show" : ""}`}
-        onMouseEnter={handleMenuLeave}
-        onMouseLeave={handleMenuLeave}
-      />
-      <header className="nav-wrapper">
-        <nav className="nav" aria-label="Primary navigation">
-          <div className="nav-left">
-            <button className="nav-logo" aria-label="Apple home">
-              <span>
-                <img src={Image} alt="Apple" />
-              </span>
-            </button>
-          </div>
-
-          <ul className="nav-menu" onMouseLeave={handleMenuLeave}>
-            {MAIN_ITEMS.map((item) => (
-              <><li
-                key={item}
-                className={`nav-menu-item ${openMenu === item ? "is-open" : ""}`}
-                onMouseEnter={() => handleItemEnter(item)}
-              >
-                <button type="button" className="nav-link">
-                  {item}
-                </button>
-              </li>
-
-                <div
-                  className={`mega-menu ${openMenu ? "show" : ""}`}
-                  onMouseEnter={() => setOpenMenu(openMenu)}
-                  onMouseLeave={handleMenuLeave}
-                >
-                  <div className="mega-menu-inner">
-
-                    {openMenu === "Store" &&
-                      STORE_MEGA_COLUMNS.map((column) => (
-                        <div key={column.title}>
-                          <div className="mega-column-title">{column.title}</div>
-                          <ul className={`mega-list ${column.type}`}>
-                            {column.links.map((link) => (
-                              <li key={link} className="mega-list-item">
-                                <a href="#" className="mega-link">
-                                  {link}
-                                </a>
-                              </li>
+                {/* Dropdown */}
+                {activeMenu && (
+                    <div
+                        className="dropdown"
+                        onMouseEnter={() => clearTimeout(timeoutRef.current)}
+                        onMouseLeave={closeMenu}
+                    >
+                        <div className="dropdown-grid">
+                            {NAV_DATA[activeMenu].map((column, i) => (
+                                <div key={i} className="dropdown-col">
+                                    {column.map((item, index) => (
+                                        <div
+                                            key={index}
+                                            className={index === 0 ? "col-title" : "col-item"}
+                                        >
+                                            {item}
+                                        </div>
+                                    ))}
+                                </div>
                             ))}
-                          </ul>
                         </div>
-                      ))}
+                    </div>
+                )}
+            </nav>
 
-                    {openMenu === "Mac" &&
-                      MAC_MEGA_COLUMNS.map((column) => (
-                        <div key={column.title}>
-                          <div className="mega-column-title">{column.title}</div>
-                          <ul className={`mega-list ${column.type}`}>
-                            {column.links.map((link) => (
-                              <li key={link} className="mega-list-item">
-                                <a href="#" className="mega-link">
-                                  {link}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
+            {/* Mobile Menu */}
+            {mobileOpen && (
+                <div className="mobile-menu">
+                    {Object.keys(NAV_DATA).map((item) => (
+                        <div key={item} className="mobile-item">
+                            {item}
                         </div>
-                      ))}
-
-                    {openMenu === "iPad" &&
-                      iPad_MEGA_COLUMNS.map((column) => (
-                        <div key={column.title}>
-                          <div className="mega-column-title">{column.title}</div>
-                          <ul className={`mega-list ${column.type}`}>
-                            {column.links.map((link) => (
-                              <li key={link} className="mega-list-item">
-                                <a href="#" className="mega-link">
-                                  {link}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-
-                      {openMenu === "iPhone" &&
-                      iPhone_MEGA_COLUMNS.map((column) => (
-                        <div key={column.title}>
-                          <div className="mega-column-title">{column.title}</div>
-                          <ul className={`mega-list ${column.type}`}>
-                            {column.links.map((link) => (
-                              <li key={link} className="mega-list-item">
-                                <a href="#" className="mega-link">
-                                  {link}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-
-                      {openMenu === "Watch" &&
-                      Watch_MEGA_COLUMNS.map((column) => (
-                        <div key={column.title}>
-                          <div className="mega-column-title">{column.title}</div>
-                          <ul className={`mega-list ${column.type}`}>
-                            {column.links.map((link) => (
-                              <li key={link} className="mega-list-item">
-                                <a href="#" className="mega-link">
-                                  {link}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-
-                      {openMenu === "Vision" &&
-                      Vision_MEGA_COLUMNS.map((column) => (
-                        <div key={column.title}>
-                          <div className="mega-column-title">{column.title}</div>
-                          <ul className={`mega-list ${column.type}`}>
-                            {column.links.map((link) => (
-                              <li key={link} className="mega-list-item">
-                                <a href="#" className="mega-link">
-                                  {link}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-
-                      {openMenu === "AirPods" &&
-                      AirPods_MEGA_COLUMNS.map((column) => (
-                        <div key={column.title}>
-                          <div className="mega-column-title">{column.title}</div>
-                          <ul className={`mega-list ${column.type}`}>
-                            {column.links.map((link) => (
-                              <li key={link} className="mega-list-item">
-                                <a href="#" className="mega-link">
-                                  {link}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-
-                      {openMenu === "TV & Home" &&
-                      TV_MEGA_COLUMNS.map((column) => (
-                        <div key={column.title}>
-                          <div className="mega-column-title">{column.title}</div>
-                          <ul className={`mega-list ${column.type}`}>
-                            {column.links.map((link) => (
-                              <li key={link} className="mega-list-item">
-                                <a href="#" className="mega-link">
-                                  {link}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-
-                      {openMenu === "Entertainment" &&
-                      Entertainment_MEGA_COLUMNS.map((column) => (
-                        <div key={column.title}>
-                          <div className="mega-column-title">{column.title}</div>
-                          <ul className={`mega-list ${column.type}`}>
-                            {column.links.map((link) => (
-                              <li key={link} className="mega-list-item">
-                                <a href="#" className="mega-link">
-                                  {link}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-
-                      {openMenu === "Accessories" &&
-                      Accessories_MEGA_COLUMNS.map((column) => (
-                        <div key={column.title}>
-                          <div className="mega-column-title">{column.title}</div>
-                          <ul className={`mega-list ${column.type}`}>
-                            {column.links.map((link) => (
-                              <li key={link} className="mega-list-item">
-                                <a href="#" className="mega-link">
-                                  {link}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-
-                      {openMenu === "Support" &&
-                      Support_MEGA_COLUMNS.map((column) => (
-                        <div key={column.title}>
-                          <div className="mega-column-title">{column.title}</div>
-                          <ul className={`mega-list ${column.type}`}>
-                            {column.links.map((link) => (
-                              <li key={link} className="mega-list-item">
-                                <a href="#" className="mega-link">
-                                  {link}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-
-
-
-
-
-
-
-
-                  </div>
-                </div></>
-            ))}
-          </ul>
-
-
-          <div className="nav-right">
-            <button className="icon-btn" aria-label="Search">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <circle
-                  cx="11"
-                  cy="11"
-                  r="6"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  fill="none"
-                />
-                <line
-                  x1="15.5"
-                  y1="15.5"
-                  x2="20"
-                  y2="20"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
-            <button className="icon-btn" aria-label="Shopping bag">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M7 9V8a5 5 0 0 1 10 0v1"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                />
-                <rect
-                  x="5"
-                  y="9"
-                  width="14"
-                  height="11"
-                  rx="2"
-                  ry="2"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                />
-              </svg>
-            </button>
-          </div>
-        </nav>
-      </header>
-    </>
-  );
+                    ))}
+                </div>
+            )}
+        </>
+    );
 }
-
-export default Navbar;
