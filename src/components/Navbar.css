@@ -1,0 +1,288 @@
+/* Apple-style top navigation bar */
+
+.nav-wrapper {
+  position: sticky;
+  top: 0;
+
+  width: 100%;
+  background-color: #ffffffcc;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  overflow: visible;
+}
+
+.nav {
+  position: relative;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: #1d1d1f;
+  overflow: visible;
+  height: 44px;
+
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  margin-right: 18px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-left: 18px;
+}
+
+.nav-logo {
+  border: none;
+  background: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1d1d1f;
+  border-radius: 999px;
+  transition: color 0.15s ease;
+}
+
+.nav-logo:hover {
+  color: #0071e3;
+}
+
+.nav-logo span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-logo span img {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu-item:not(:first-child) {
+  margin-left: 0;
+}
+
+.nav-menu-item {
+  position: relative;
+}
+
+/* .nav-link {
+  border: none;
+  background: none;
+  padding: 4px 0;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  white-space: nowrap;
+  transition: color 0.15s ease;
+  outline: none;
+  -webkit-appearance: none;  
+} */
+.nav-link {
+  position: relative;
+  border: none;
+  background: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  white-space: nowrap;
+  border-radius: 999px;
+  transition: color 0.15s ease;
+}
+
+.nav-link:focus {
+  outline: none; /* Added: Ensure no outline on focus */
+}
+.nav-link:hover,
+.nav-menu-item.is-open > .nav-link {
+  color: #0071e3;
+}
+
+.icon-btn {
+  border: none;
+  background: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #1d1d1f;
+  border-radius: 999px;
+  transition: color 0.15s ease;
+}
+
+.icon-btn:hover {
+  color: #0071e3;
+}
+
+.icon-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Mega menu overlay */
+
+.mega-menu-overlay {
+  position: fixed;
+  top: 44px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: calc(100vh - 44px);
+  background-color: rgba(204, 198, 198, 0.3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(30px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+
+  pointer-events: auto;
+}
+
+.mega-menu-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Mega menu */
+
+.mega-menu {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 44px;
+  width: 100vw;
+ 
+
+  background-color: #ffffff;
+  box-shadow: 0 10px 20px rgb(255, 255, 255);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+  
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    visibility 0.25s ease;
+
+ 
+}
+
+.nav-menu-item.is-open > .mega-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.mega-column-title {
+  margin-top: 48px;
+  font-size: 11px;
+  font-weight: 400;
+  text-transform:none;
+  letter-spacing: 0.08em;
+  color: #1d1d1f;
+  
+}
+
+.mega-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mega-list-item {
+  margin-top: 0;
+}
+ 
+/* .mega-link {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1d1d1f;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s ease;
+} */
+/* Default = Shop (primary) */
+.mega-list.primary .mega-link {
+  
+  font-size: 24px;
+  font-weight: 600;
+  color: #1d1d1f;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+/* Smaller lists */
+.mega-list.secondary .mega-link {
+  
+  font-size: 12px;
+  font-weight: 600;
+  color: #424245;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+/* Optional: tighter spacing for small lists */
+.mega-list.secondary .mega-list-item + .mega-list-item {
+  margin-top: 6px;
+}
+
+
+
+.mega-link:hover {
+  color: #0071e3;
+}
+.mega-menu-inner {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.mega-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Responsive tweaks */
+
+@media (max-width: 900px) {
+  .nav {
+    padding: 8px 16px;
+    gap: 16px;
+  }
+
+  .nav-menu {
+    display: none; /* simple desktop-only nav for now */
+  }
+}
