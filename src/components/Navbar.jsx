@@ -4,19 +4,52 @@ import "./Navbar.css";
 import  AppleLogo from "../assests/Home_logo_img/applelogo.png";
 import  SearchLogo from "../assests/Home_logo_img/search.png";
 import  BagLogo from "../assests/Home_logo_img/bag.svg";
-
-
+import  Hamburger  from "../assests/Home_logo_img/hamburger.png";
+import X from "../assests/Home_logo_img/cancel.png"
 /* 11 menus – each menu has 3 columns */
 const NAV_DATA = {
     Store: [
-        ["Shop the Store", "Mac", "iPad", "iPhone", "Watch"],
-        ["Quick Links", "Find a Store", "Order Status", "Financing"],
-        ["Special Stores", "Education", "Business", "Government"],
+        ["Shop the Store", "Shop Gifts",
+      "Mac",
+      "iPad",
+      "iPhone",
+      "Apple Watch",
+      "Apple Vision Pro",
+      "AirPods",
+      "Accessories",],
+        ["Quick Links",  "Find a Store",
+      "Order Status",
+      "Apple Trade In",
+      "Financing",
+      "Personal Setup",],
+        ["Special Stores", "Certified Refurbished",
+      "Education",
+      "Business",
+      "Veterans and Military",
+      "Government",],
     ],
     Mac: [
-        ["Explore Mac", "MacBook Air", "MacBook Pro", "iMac"],
-        ["Shop Mac", "Compare Mac", "Accessories"],
-        ["More from Mac", "macOS", "Continuity", "iCloud"],
+        ["Explore Mac", "MacBook Air",
+      "MacBook Pro",
+      "iMac",
+      "Mac mini",
+      "Mac Studio",
+      "Mac Pro",
+      "Displays",
+      "Compare Mac",],
+        ["Shop Mac", "Shop Mac",
+      "Mac Accessories",
+      "Apple Trade In",
+      "Financing",
+      "Personal Setup",],
+        ["More from Mac", "Mac Support",
+      "AppleCare+ for Mac",
+      "macOS Sonoma",
+      "Apps by Apple",
+      "Continuity",
+      "iCloud+",
+      "Mac for Business",
+      "Education",],
     ],
     iPad: [
         ["Explore iPad", "iPad Pro", "iPad Air", "iPad mini"],
@@ -24,19 +57,60 @@ const NAV_DATA = {
         ["More from iPad", "iPadOS", "Apple Pencil"],
     ],
     iPhone: [
-        ["Explore iPhone", "iPhone 15", "iPhone 14", "iPhone SE"],
-        ["Shop iPhone", "Compare iPhone", "Accessories"],
-        ["More from iPhone", "iOS", "Privacy"],
+        ["Explore iPhone",  "Explore All iPad",
+      "iPad Pro",
+      "iPad Aire",
+      "iPad",
+      "iPad mini",
+      "Apple Pencil",
+      "Keyboards"],
+        ["Shop iPhone", "Shop iPad",
+      "iPad Accessories",
+      "Apple Trade In",
+      "Financing",
+      "Personal Setup",],
+        ["More from iPhone", "iPad Support",
+      "AppleCare",
+      "iPadOS 26",
+      "Apple Intelligence",
+      "Apped by Apple",
+      "iCloud+",
+      "Education",],
     ],
     Watch: [
-        ["Explore Watch", "Series 9", "Ultra 2", "SE"],
-        ["Shop Watch", "Bands", "Accessories"],
-        ["More from Watch", "watchOS", "Fitness+"],
+        ["Explore Watch", "Explore All Apple Watch",
+      "Apple Watch Series 11",
+      "Apple Watch SE 3",
+      "Apple Watch Ultra 3",
+      "Apple Watch nike ",
+      "Apple Watch Hermes",],
+        ["Shop Watch", "Shop Apple Watch",
+      "Shop Apple Bands",
+      "Apple Watch Accessories",
+      "Apple Trade In",
+      "Financing",
+      "Personal Setup",],
+        ["More from Watch", "Watch Support",
+      "AppleCare",
+      "watchOS 26",
+      "Apple Watch For Your kids",
+      "Apped by Apple",
+      "Apple Fitness+",],
     ],
     Vision: [
-        ["Explore Vision", "Vision Pro"],
+        ["Explore Vision", "Apple Vision Pro Support",
+      "AppleCare",
+      "watchOS 26",
+      "Apple Watch For Your kids",
+      "Apped by Apple",
+      "Apple Fitness+",],
         ["Shop Vision", "Accessories"],
-        ["More from Vision", "visionOS"],
+        ["More from Vision",  "Apple Vision Pro Support",
+      "AppleCare",
+      "watchOS 26",
+      "Apple Watch For Your kids",
+      "Apped by Apple",
+      "Apple Fitness+",],
     ],
     AirPods: [
         ["Explore AirPods", "AirPods Pro", "AirPods Max"],
@@ -123,7 +197,7 @@ export default function Navbar() {
                             className="mobile-toggle"
                             onClick={() => setMobileOpen(!mobileOpen)}
                         >
-                            {mobileOpen ? <img src={AppleLogo} alt="Apple" className="apple-logo"/> : <img src={AppleLogo} alt="Apple" className="apple-logo"/>}
+                            {mobileOpen ? <img src={X} alt="X" className="X"/> : <img src={Hamburger} alt="icon-btn" className="hamburger"/>}
                         </button>
                     </div>
                 </div>
