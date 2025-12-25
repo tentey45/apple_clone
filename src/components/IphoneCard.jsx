@@ -1,26 +1,28 @@
-
 import "./HeroCard.css";
-import heroGif from "../assests/Home_vdo/largetall.mp4"; // or .gif
+import IPhone from "../assests/Hero_Sec_Img/iPhone.jpg";
 import PromoCard from './InfoCard';
 
 
 export default function Demo() {
     return (
-        <div>
+        <div style={{paddingTop: "20px"}}>
+
+           
             {/* Example 1: Background Image */}
             <PromoCard
-                title="Wrapping this special season."
+                title="iPhone"
                 subtitle="There's still time to make their holiday one of a kind"
-                primaryButton="Shop Gift"
-                backgroundVideo={heroGif}
+                primaryButton="Learn more"
+                secondaryButton="Shop Iphone"
+                backgroundImage={IPhone}
                 textColor="black"
                 overlay={0.1}
-                overlayOpacity={0.1}
-               
+                overlayOpacity={0.1}     
             />
 
-
         </div>
+
+        
     );
 }
 

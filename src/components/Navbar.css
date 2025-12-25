@@ -226,6 +226,7 @@
                 @media (max-width: 768px) {
                   .nav-menu {
                     display: none;
+                    display:flexbox;
                   }
 
                   .mobile-toggle {
