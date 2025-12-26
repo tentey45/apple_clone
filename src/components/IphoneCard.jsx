@@ -1,5 +1,5 @@
 import "./HeroCard.css";
-import IPhone from "../assests/Hero_Sec_Img/iPhone.jpg";
+import IPhone from "../assests/Hero_Sec_Img/hero_iphone_family__fuz5j2v5xx6y_largetall_2x.jpg";
 import PromoCard from './InfoCard';
 
 

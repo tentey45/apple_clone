@@ -3,7 +3,7 @@ import React from 'react';
 import "./CardGrid.css"
 
 
-function Card({ title, subtitle, primaryButton, secondaryButton, backgroundImage, backgroundVideo, textColor, overlay, overlayOpacity }) {
+function Card({ title,titleImage, subtitle, primaryButton, secondaryButton, backgroundImage, backgroundVideo, textColor, overlay, overlayOpacity }) {
   return (
     <div className="card-item" style={{ '--overlay-opacity': overlayOpacity }}>
       {backgroundImage && (
@@ -16,15 +16,38 @@ function Card({ title, subtitle, primaryButton, secondaryButton, backgroundImage
           <video src={backgroundVideo} autoPlay muted loop playsInline />
         </div>
       )}
-      {overlay && <div className="card-overlay" />}
+     {overlay && (backgroundImage || backgroundVideo) && (
+        <div className="card-overlay" />
+      )}
+
       <div className="card-content">
-        <h3 className="card-title" style={{ color: textColor }}>{title}</h3>
-        <p className="card-subtitle" style={{ color: textColor }}>{subtitle}</p>
+        {titleImage ? (
+          <img src={titleImage} alt="Logo" className="card-title-image" />
+        ) : title ? (
+          <h3 className="card-title" style={{ color: textColor }}>
+            {title}
+          </h3>
+        ) : null}
+        
+        <p className="card-subtitle" style={{ color: textColor }}>
+          {subtitle}
+        </p>
         <div className="card-buttons">
-          {primaryButton && <button className="card-btn card-btn-primary">{primaryButton}</button>}
-          {secondaryButton && <button className="card-btn card-btn-secondary">{secondaryButton}</button>}
+          {primaryButton && (
+            <button className="card-btn card-btn-primary">
+              {primaryButton}
+            </button>
+          )}
+          {secondaryButton && (
+            <button 
+              className={`card-btn card-btn-secondary ${textColor === '#ffffff' || textColor === 'white' ? 'light' : ''}`}
+            >
+              {secondaryButton}
+            </button>
+          )}
         </div>
       </div>
+
     </div>
   );
 }

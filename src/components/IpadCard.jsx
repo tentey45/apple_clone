@@ -1,4 +1,4 @@
-import Ipad from "../assests/Hero_Sec_Img/iPad.jpg"; //
+import Airpod from "../assests/Hero_Sec_Img/airpods.jpg"; //
 import PromoCard from './InfoCard';
 
 export default function Demo() {
@@ -13,7 +13,7 @@ export default function Demo() {
                 subtitle="There's still time to make their holiday one of a kind"
                 primaryButton="Learn more"
                 secondaryButton="Shop Iphone"
-                backgroundImage={Ipad}
+                backgroundImage={Airpod}
                 textColor="black"
                 overlay={0.1}
                 overlayOpacity={0.1}     

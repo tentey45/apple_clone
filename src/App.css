@@ -1,0 +1,20 @@
+/* Page container */
+.page {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .page {
+    padding: 0 20px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .page {
+    padding: 0 16px;
+  }
+}

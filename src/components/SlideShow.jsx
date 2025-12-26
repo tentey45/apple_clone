@@ -60,7 +60,7 @@ export default function EntertainmentCarousel() {
     },
     {
       id: 2,
-      image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=400&h=800&fit=crop",
+      image: "https://is1-ssl.mzstatic.com/image/thumb/Features211/v4/cb/39/a1/cb39a15e-3dce-1c66-e0b1-c496575a3b20/2dc42578-4951-483b-98cc-e3ef056c73d5.png/940x528.jpg",
       logo: "🎮",
       category: "NBA 2K25 Arcade Edition",
       title: "Play now",

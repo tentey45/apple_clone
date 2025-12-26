@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import './InfoCard.css';
-export default function PromoCard({ 
-   title = "Wrapping up this special season.",
+export default function PromoCard({
+  title = "Wrapping up this special season.",
   subtitle = "There's still time to make their holiday one of a kind.",
   primaryButton = "Shop gifts",
   secondaryButton = null,
   image = null,
+
   backgroundImage = null,
   backgroundVideo = null,
   backgroundColor = "#f5f5f7",
@@ -13,23 +14,23 @@ export default function PromoCard({
   overlay = false,
   overlayOpacity = 0.4
 }) {
-const [mobileOpen, setMobileOpen] = useState(false);
-useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth >= 768) {
-                setMobileOpen(false);
-            }
-        };
+  const [mobileOpen, setMobileOpen] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setMobileOpen(false);
+      }
+    };
 
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
-<>
-      <div 
-        className="promo-card" 
-        style={{ 
+    <>
+      <div
+        className="promo-card"
+        style={{
           backgroundColor: (!backgroundImage && !backgroundVideo) ? backgroundColor : 'transparent',
           '--overlay-opacity': overlayOpacity
         }}
@@ -44,7 +45,7 @@ useEffect(() => {
         {/* Background Video */}
         {backgroundVideo && (
           <div className="promo-card-background">
-            <video 
+            <video
               src={backgroundVideo}
               autoPlay
               muted
@@ -77,9 +78,9 @@ useEffect(() => {
                 {primaryButton}
               </button>
             )}
-            
+
             {secondaryButton && (
-              <button 
+              <button
                 className={`promo-btn promo-btn-secondary ${textColor === '#ffffff' || textColor === 'white' ? 'light' : ''}`}
               >
                 {secondaryButton}
@@ -96,16 +97,16 @@ useEffect(() => {
         </div>
       </div>
 
-       {/* Mobile Menu */}
-            {mobileOpen && (
-                <div className="mobile-menu">
-                    {Object.keys(NAV_DATA).map((item) => (
-                        <div key={item} className="mobile-item">
-                            {item}
-                        </div>
-                    ))}
-                </div>
-            )}
+      {/* Mobile Menu */}
+      {mobileOpen && (
+        <div className="mobile-menu">
+          {Object.keys(NAV_DATA).map((item) => (
+            <div key={item} className="mobile-item">
+              {item}
+            </div>
+          ))}
+        </div>
+      )}
     </>
   );
 }

@@ -1,8 +1,8 @@
 /* ===== Card Grid Wrapper ===== */
 .card-grid-wrapper {
   padding: 12px;
-  max-width: 1440px;
-  margin: 0 auto;
+  max-width: 100%;
+
 }
 
 .card-grid {
@@ -19,8 +19,9 @@
 .card-item {
   position: relative;
   overflow: hidden;
+  width: 100%;
 
-  min-height: 580px;
+  height: 580px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -28,7 +29,10 @@
   text-align: left;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
-
+.card-image{
+  position: absolute;
+  z-index: 0;
+}
 .card-background {
   position: absolute;
   top: 0;
@@ -37,7 +41,10 @@
   height: 100%;
   z-index: 0;
 }
-
+.card-title-image {
+  max-width: 400px;
+  margin-bottom: 12px;
+}
 .card-background img,
 .card-background video {
   width: 100%;
@@ -48,9 +55,12 @@
 .card-overlay {
   position: absolute;
 
-    
+     
+  justify-items: center;
+
+
   top: 0;
-  left: 0;
+ 
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, var(--overlay-opacity));
@@ -59,11 +69,11 @@
 
 .card-content {
   position: relative;
-
-  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  
   top: -350px;
-
-
   z-index: 2;
 }
 
@@ -88,6 +98,7 @@
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+  justify-content: center;
   
 }
 
@@ -139,6 +150,7 @@
 @media (max-width: 768px) {
   .card-grid {
     grid-template-columns: 1fr;
+   
   }
   
   .card-grid .card-item:first-child {
@@ -146,7 +158,8 @@
   }
 
   .card-item {
+     width: 100%;
     min-height: 400px;
-    padding: 30px;
+   
   }
 }
