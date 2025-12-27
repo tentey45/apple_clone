@@ -1,25 +1,37 @@
-import Airpod from "../assests/Hero_Sec_Img/airpods.jpg"; //
+import "./HeroCard.css";
+import IPhone from "../../assests/Hero_Sec_Img/hero_iphone_family__fuz5j2v5xx6y_largetall_2x.jpg";
 import PromoCard from './InfoCard';
+
 
 export default function Demo() {
     return (
         <div style={{paddingTop: "20px"}}>
 
            
-      
-             {/* Example 1: Background Image */}
+            {/* Example 1: Background Image */}
             <PromoCard
-                title="iPad"
+                title="iPhone"
                 subtitle="There's still time to make their holiday one of a kind"
                 primaryButton="Learn more"
                 secondaryButton="Shop Iphone"
-                backgroundImage={Airpod}
+                backgroundImage={IPhone}
                 textColor="black"
                 overlay={0.1}
                 overlayOpacity={0.1}     
             />
+
         </div>
 
         
     );
 }
+
+
+
+
+
+
+
+
+
+

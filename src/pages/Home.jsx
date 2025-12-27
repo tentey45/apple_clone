@@ -1,12 +1,12 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
-import Card from '../components/Card'
-import Iphone from '../components/IphoneCard'
-import Ipad from "../components/IpadCard";
-import Twocard  from '../components/Twocard';
-import Slide from "../components/SlideShow";
-import Footer from "../components/Footer"
-import CardGrid from '../components/CardGrid'; 
+import Navbar from '../components/common/Navbar'
+import Card from '../components/home/Card'
+import Iphone from '../components/home/IphoneCard'
+import Ipad from "../components/home/IpadCard";
+import Twocard  from '../components/product/Twocard';
+import Slide from "../components/product/SlideShow";
+import Footer from "../components/common/Footer"
+import CardGrid from '../components/home/CardGrid'; 
 
 // import Promotion from "./components/Promotion"
 export default function App() {

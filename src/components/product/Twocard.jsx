@@ -1,15 +1,10 @@
-import CardGrid from "./CardGrid"
-import InfoCard from "./InfoCard"
-import IPadAir from "../assests/Hero_Sec_Img/hero_ipad_air_avail__c34ycq52exg2_largetall_2x.jpg"
-import Watch from "../assests/Hero_Sec_Img/watch.jpg"
-import Ipad from "../assests/Hero_Sec_Img/ipad-new.jpg"
-import IPhone from "../assests/Hero_Sec_Img/iPhone.jpg"
-import Card from "../assests/Hero_Sec_Img/card.jpg"
-import Icon from "../assests/Home_logo_img/promo_logo_ipadair__frwnnsqveeye_large_2x.png"
-import Watchlogo from "../assests/Home_logo_img/promo_logo_apple_watch_series_11__d9br21pxygya_large_2x.png"
-import Gift from "../assests/Hero_Sec_Img/promo_apple_gift_card__etkqjveoh4uq_large.jpg"
-import TradeIn from "../assests/Hero_Sec_Img/icase.jpg"
-import TradeInlogo from "../assests/Home_logo_img/promo_logo_iphone_tradein__7y3gtai5az66_large.png"
+import CardGrid from "../home/CardGrid"
+import IPadAir from "../../assests/Hero_Sec_Img/hero_ipad_air_avail__c34ycq52exg2_largetall_2x.jpg"
+import Watch from "../../assests/Hero_Sec_Img/watch.jpg"
+import Ipad from "../../assests/Hero_Sec_Img/ipad-new.jpg"
+import Card from "../../assests/Hero_Sec_Img/card.jpg"
+import Gift from "../../assests/Hero_Sec_Img/promo_apple_gift_card__etkqjveoh4uq_large.jpg"
+import TradeIn from "../../assests/Hero_Sec_Img/icase.jpg"
 export default function Twocard() {
   const cardData = [
  

@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 
 import "./Navbar.css";
-import  AppleLogo from "../assests/Home_logo_img/applelogo.png";
-import  SearchLogo from "../assests/Home_logo_img/search.png";
-import  BagLogo from "../assests/Home_logo_img/bag.svg";
-import  Hamburger  from "../assests/Home_logo_img/hamburger.png";
-import X from "../assests/Home_logo_img/cancel.png"
+import  AppleLogo from "../../assests/Home_logo_img/applelogo.png";
+import  SearchLogo from "../../assests/Home_logo_img/search.png";
+import  BagLogo from "../../assests/Home_logo_img/bag.svg";
+import  Hamburger  from "../../assests/Home_logo_img/hamburger.png";
+import X from "../../assests/Home_logo_img/cancel.png"
 /* 11 menus – each menu has 3 columns */
 const NAV_DATA = {
     Store: [
@@ -176,9 +176,8 @@ export default function Navbar() {
 
             <nav className={`nav ${activeMenu ? 'no-border' : ''}`}>
                 <div className="nav-inner">
-                    <img src={AppleLogo} alt="Apple" className="apple-logo"/>
-
                     <ul className="nav-menu">
+                        <img src={AppleLogo} alt="Apple" className="apple-logo"/>
                         {Object.keys(NAV_DATA).map((item) => (
                             <li
                                 key={item}
@@ -188,18 +187,15 @@ export default function Navbar() {
                                 {item}
                             </li>
                         ))}
-                    </ul>
-
-                    <div className="nav-right">
-                        <img src={SearchLogo} alt="Search" className="icon"/>
-                        <img src={BagLogo} alt="Bag" className="icon"/>
+                        <img src={SearchLogo} alt="Search" className="icon-search"/>
+                        <img src={BagLogo} alt="Bag" className="icon-bag"/>
                         <button
                             className="mobile-toggle"
                             onClick={() => setMobileOpen(!mobileOpen)}
                         >
                             {mobileOpen ? <img src={X} alt="X" className="X"/> : <img src={Hamburger} alt="icon-btn" className="hamburger"/>}
                         </button>
-                    </div>
+                    </ul>
                 </div>
 
                 {/* Dropdown */}

@@ -1,6 +1,6 @@
 
 import "./HeroCard.css";
-import heroGif from "../assests/Home_vdo/largetall.mp4"; // or .gif
+import heroGif from "../../assests/Home_vdo/largetall.mp4"; // or .gif
 import PromoCard from './InfoCard';
 
 
