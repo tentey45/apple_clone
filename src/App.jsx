@@ -1,10 +1,24 @@
-import React from 'react'
-import Home from './pages/Home'
-// import Promotion from "./components/Promotion"
-export default function App() {
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/common/Navbar";
+import Home from "./pages/Home";
+import Iphone17 from "./pages/Iphone17";
+import Footer from './components/common/Footer';
+import ScrollTop from './components/common/ScrollTop'
+
+
+function App() {
   return (
-    <div className="app-container">
-      <Home />
-    </div>
-  )
+    <>
+    <ScrollTop/>
+   <Navbar/>
+      <Routes>
+       <Route path="/home" element={<Home />} />
+        <Route path="/iphone17" element={<Iphone17 />} />
+      </Routes>
+         <Footer/>
+    </>
+ 
+  );
 }
+
+export default App;
