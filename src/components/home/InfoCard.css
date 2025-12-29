@@ -1,0 +1,211 @@
+.promo-card {
+          padding: 60px 20px;
+          text-align: center;
+          font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+          position: relative;
+          overflow: hidden;
+          min-width: 100%;
+          min-height: 700px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .promo-card-background {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 0;
+        }
+
+        .promo-card-background img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .promo-card-background video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .promo-card-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, var(--overlay-opacity));
+          z-index: 1;
+        }
+
+        .promo-card-container {
+          max-width: 980px;
+          margin: 0 auto;
+          position: relative;
+          z-index: 2;
+          top: -200px;
+        }
+
+        .promo-card-title {
+          font-size: clamp(32px, 5vw, 48px);
+          font-weight: 600;
+          margin: 0 0 12px 0;
+          line-height: 1.08;
+          letter-spacing: -0.003em;
+    
+        }
+
+        .promo-card-subtitle {
+          font-size: clamp(17px, 2.5vw, 21px);
+          margin: 0 0 12px 0;
+          line-height: 1;
+          font-weight: 400;
+        }
+
+        .promo-card-buttons {
+          display: flex;
+          gap: 16px;
+          justify-content: center;
+          align-items: center;
+          flex-wrap: wrap;
+          margin-bottom: 40px;
+        }
+
+        .promo-card-buttons.no-image {
+          margin-bottom: 0;
+        }
+
+        .promo-btn {
+          border-radius: 980px;
+          padding: 12px 22px;
+          font-size: 17px;
+          font-weight: 400;
+          cursor: pointer;
+          transition: all 0.15s ease;
+          font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+          border: none;
+        }
+
+        .promo-btn-primary {
+          background-color: #0071e3;
+          color: rgb(255, 255, 255);
+          border: none;
+        }
+
+        .promo-btn-primary:hover {
+          background-color: #0077ED;
+        }
+
+        .promo-btn-secondary {
+          background-color: transparent;
+          color: #0071e3;
+          border: 1px solid #0071e3;
+        }
+
+        .promo-btn-secondary:hover {
+          background-color: #0071e3;
+          color: white;
+        }
+
+        .promo-btn-secondary.light {
+          color: #ffffff;
+          border-color: rgb(255, 255, 255);
+        }
+
+        .promo-btn-secondary.light:hover {
+          background-color: white;
+          color: #1d1d1f;
+        }
+
+        .promo-card-image {
+          margin-top: 40px;
+          display: flex;
+          justify-content: center;
+        }
+
+        .promo-card-image img {
+          max-width: 100%;
+          height: auto;
+ 
+        }
+
+        /* ================================================= */
+/* ================= RESPONSIVE ==================== */
+/* ================================================= */
+
+/* ---------- Tablet (≤ 1024px) ---------- */
+@media (max-width: 1024px) {
+  .promo-card {
+    min-height: 520px;
+  }
+
+  .promo-card-container {
+    padding: 36px;
+    max-width: 520px;
+  }
+
+  .promo-card-image {
+    max-width: 260px;
+    right: 24px;
+    bottom: 24px;
+  }
+}
+
+/* ---------- Mobile (≤ 768px) ---------- */
+@media (max-width: 768px) {
+  .promo-card {
+    height: auto;
+   
+  }
+
+  .promo-card-container {
+    padding: 28px 20px;
+    max-width: 100%;
+    align-items: flex-start;
+  }
+
+  .promo-card-title {
+    font-size: 1.9rem;
+  }
+
+  .promo-card-subtitle {
+    font-size: 1rem;
+  }
+
+  .promo-card-buttons {
+    flex-wrap: wrap;
+  }
+
+  /* Image moves BELOW text */
+  .promo-card-image {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    margin-top: 24px;
+    max-width: 100%;
+  }
+}
+
+/* ---------- Small Mobile (≤ 430px) ---------- */
+@media (max-width: 430px) {
+  .promo-card-container {
+    padding: 20px 16px;
+  }
+
+  .promo-card-title {
+    font-size: 1.6rem;
+  }
+
+  .promo-card-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .promo-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
