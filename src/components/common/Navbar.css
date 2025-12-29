@@ -259,12 +259,12 @@ body {
 @media (max-width: 768px) {
   .nav-inner {
     justify-content: space-between;
-    padding: 0 16px;
+    
   }
 
   .nav-menu {
-    gap: 0;
-    justify-content: space-between;
+    gap: 3;
+    
     width: auto;
   }
 
