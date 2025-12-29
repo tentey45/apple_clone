@@ -9,9 +9,10 @@ import ScrollTop from './components/common/ScrollTop'
 function App() {
   return (
     <>
-    <ScrollTop/>
+    
    <Navbar/>
       <Routes>
+        <Route path="/" element={<Home />} />
        <Route path="/home" element={<Home />} />
         <Route path="/iphone17" element={<Iphone17 />} />
       </Routes>
